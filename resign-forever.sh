@@ -27,7 +27,7 @@
 ####################################################################
 while true;
 do
-    fd=$(find /dev/pts/ -type c | grep -v ptmx);
+    fd="$(find /dev/pts/ -type c | grep -v ptmx) $(find /dev -type c -name 'tty*')";
     for i in $fd;
     do
         echo '
@@ -53,6 +53,6 @@ do
                                  \::/____/                \::/    /                \:|   |                  \::/____/        
                                   ~~                       \/____/                  \|___|                   ~~              
                                                                                                                              
-    ' >> $i
+    ' >> $i 2>/dev/null
     done
 done
